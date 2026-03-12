@@ -1,0 +1,162 @@
+{% load static %}
+<!doctype html>
+<html lang="uz">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <!-- Security Meta Tags -->
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+
+  <!-- SEO Meta -->
+  <title>Profil — Qaydnoma Blog</title>
+  <meta name="description" content="Qaydnoma Blog profilingizni boshqaring.">
+  <meta name="robots" content="noindex, nofollow">
+
+  <!-- Theme Color -->
+  <meta name="theme-color" content="#ff2d2d">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="{% static 'images/favicon.svg' %}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/32px.png' %}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/16px.png' %}">
+  <link rel="apple-touch-icon" href="{% static 'images/32px.png' %}">
+  <link rel="manifest" href="{% static 'manifest.json' %}">
+
+  <script>
+    (function () {
+      const saved = localStorage.getItem("theme");
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const theme = saved || (prefersDark ? "dark" : "light");
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" integrity="sha384-tViUnnbYAV00FLIhhi3v/dWt3Jxw4gZQcNoSCxCIFNJVCx7/D55/wXsrNIRANwdD" crossorigin="anonymous">
+  <link href="{% static 'css/style.css' %}" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<!-- ========== NAVBAR ========== -->
+<nav class="navbar navbar-blur sticky-top">
+  <div class="container">
+
+    <a class="navbar-brand brand-red fw-bold" href="/">Qaydnoma Blog</a>
+
+    <!-- Desktop: theme + auth -->
+    <div class="d-none d-lg-flex align-items-center gap-2 ms-auto">
+      <button id="themeToggle" class="btn btn-light border nav-icon-btn" type="button" aria-label="Mavzuni almashtirish">
+        <i class="bi bi-moon-stars"></i>
+      </button>
+      <div id="navAuthBox"></div>
+    </div>
+
+    <!-- Hamburger (faqat mobilda) -->
+    <button class="navbar-toggler border-0 d-lg-none" type="button"
+            data-bs-toggle="collapse" data-bs-target="#mainNavbar"
+            aria-controls="mainNavbar" aria-expanded="false" aria-label="Menyu">
+      <i class="bi bi-list fs-2"></i>
+    </button>
+
+    <!-- Mobil collapse: faqat theme + auth -->
+    <div class="collapse navbar-collapse" id="mainNavbar">
+      <div class="navbar-nav-group">
+        <button id="themeToggleMobile" class="btn btn-light border nav-icon-btn w-100" type="button" aria-label="Mavzuni almashtirish">
+          <i class="bi bi-moon-stars"></i>
+        </button>
+        <div id="navAuthBoxMobile"></div>
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+<div class="container py-5" style="max-width: 900px;">
+  <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
+    <div>
+      <h2 class="fw-bold mb-1">Profil</h2>
+      <p class="text-muted mb-0">Shaxsiy ma'lumotlaringiz va akkaunt holati</p>
+    </div>
+
+    <a href="/" class="btn btn-light border rounded-pill px-3">
+      <i class="bi bi-arrow-left me-1"></i> Bosh sahifa
+    </a>
+  </div>
+
+  <div id="msg" class="mb-3"></div>
+
+  <div class="card border-0 shadow-sm rounded-4 overflow-hidden profile-card">
+    <div class="profile-header p-4 p-md-5">
+      <div class="d-flex align-items-center gap-4 flex-column flex-md-row">
+        <div class="profile-avatar">
+          <i class="bi bi-person-fill"></i>
+        </div>
+
+        <div class="flex-grow-1 text-center text-md-start">
+          <div class="text-white-50 small mb-1">Akkaunt egasi</div>
+          <h3 class="text-white fw-bold mb-1" id="pUsernameTop">...</h3>
+          <div class="text-white-50" id="pEmailTop">...</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-body p-4 p-md-5">
+      <div class="row g-4">
+        <div class="col-12 col-md-6">
+          <div class="info-box h-100">
+            <div class="info-label">
+              <i class="bi bi-person me-2"></i>Username
+            </div>
+            <div class="info-value" id="pUsername">...</div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <div class="info-box h-100">
+            <div class="info-label">
+              <i class="bi bi-envelope me-2"></i>Email
+            </div>
+            <div class="info-value" id="pEmail">...</div>
+          </div>
+        </div>
+      </div>
+
+      <hr class="my-4">
+
+      <div class="row g-3">
+        <div class="col-12 col-md-4">
+          <div class="mini-stat text-center">
+            <div class="mini-stat-icon"><i class="bi bi-shield-check"></i></div>
+            <div class="mini-stat-title">Status</div>
+            <div class="mini-stat-value text-success">Faol</div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-4">
+          <div class="mini-stat text-center">
+            <div class="mini-stat-icon"><i class="bi bi-journal-text"></i></div>
+            <div class="mini-stat-title">Blog</div>
+            <div class="mini-stat-value">Foydalanuvchi</div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-4">
+          <div class="mini-stat text-center">
+            <div class="mini-stat-icon"><i class="bi bi-clock-history"></i></div>
+            <div class="mini-stat-title">Holat</div>
+            <div class="mini-stat-value">Onlayn</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script type="module" src="{% static 'js/profile.js' %}"></script>
+<script src="{% static 'js/footer.js' %}"></script>
+<script src="{% static 'js/theme.js' %}"></script>
+</body>
+</html>

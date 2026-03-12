@@ -1,0 +1,43 @@
+# Dependencies
+node_modules/
+.npm
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Build output
+dist/
+build/
+
+# Python / Django
+__pycache__/
+*.pyc
+*.pyo
+db.sqlite3
+staticfiles/
+media/
+logs/
+*.egg-info/
+venv/
+virtualenv/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+npm-debug.log*
+
+# Source maps (production uchun olib tashlang)
+*.map

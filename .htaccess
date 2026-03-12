@@ -1,0 +1,148 @@
+# ============================================================
+# AHost.uz Shared Hosting — Apache .htaccess
+# Bu fayl public_html/ papkasiga joylashadi
+# ============================================================
+
+# ---- Passenger (Python WSGI) ----
+# AHost cPanel'da "Setup Python App" orqali Passenger avtomatik sozlanadi.
+# Agar cPanel'da Python App bo'limi bo'lmasa, quyidagi qatorlarni yoqing:
+# PassengerEnabled On
+# PassengerAppRoot /home/username/zarifsblog
+# PassengerPython /home/username/virtualenv/zarifsblog/3.11/bin/python
+
+# ---- Rewrite Engine ----
+RewriteEngine On
+
+# HTTPS majburlash
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# www dan non-www ga redirect (yoki aksincha — bittasini tanlang)
+# Non-www ga:
+RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+
+# ---- Static fayllar: Apache to'g'ridan-to'g'ri beradi ----
+# Frontend HTML fayllar
+RewriteRule ^$ /index.html [L]
+RewriteCond %{REQUEST_URI} ^/(index|post|login|register|profile|forgot-password|reset-password|404)\.html$ [NC]
+RewriteRule ^ - [L]
+
+# Static assets (CSS, JS, images, fonts)
+RewriteCond %{REQUEST_URI} ^/assets/ [NC]
+RewriteRule ^ - [L]
+
+# robots.txt, sitemap.xml, manifest.json, favicon
+RewriteCond %{REQUEST_URI} ^/(robots\.txt|sitemap\.xml|manifest\.json|favicon\.ico)$ [NC]
+RewriteRule ^ - [L]
+
+# ---- API va Admin: Django'ga yuborish ----
+# /api/* va /admin/* so'rovlari Passenger/WSGI orqali Django'ga boradi
+RewriteCond %{REQUEST_URI} ^/(api|admin|__debug__)/ [NC]
+RewriteRule ^ - [L]
+
+# Django static (collectstatic natijasi) va media fayllar
+RewriteCond %{REQUEST_URI} ^/(staticfiles|media)/ [NC]
+RewriteRule ^ - [L]
+
+# ---- Qolgan barcha so'rovlar: index.html (SPA fallback) ----
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ /index.html [L]
+
+# ============================================================
+# SECURITY HEADERS
+# ============================================================
+<IfModule mod_headers.c>
+    # Clickjacking himoyasi
+    Header always set X-Frame-Options "DENY"
+
+    # MIME type sniffing oldini olish
+    Header always set X-Content-Type-Options "nosniff"
+
+    # XSS filter
+    Header always set X-XSS-Protection "1; mode=block"
+
+    # Referrer siyosati
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+    # Permissions (kamera, mikrofon, joylashuv taqiqlash)
+    Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), interest-cohort=()"
+
+    # HSTS — faqat HTTPS (SSL sertifikat bo'lgandan keyin yoqing)
+    Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
+
+    # Content Security Policy
+    Header always set Content-Security-Policy "default-src 'self'; script-src 'self' https://cdn.jsdelivr.net 'unsafe-inline'; style-src 'self' https://cdn.jsdelivr.net 'unsafe-inline'; img-src 'self' https: data:; font-src 'self' https://cdn.jsdelivr.net; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
+
+    # Server versiyasini yashirish
+    Header always unset X-Powered-By
+    Header always unset Server
+</IfModule>
+
+# ============================================================
+# CACHING
+# ============================================================
+<IfModule mod_expires.c>
+    ExpiresActive On
+
+    # Rasmlar — 1 yil
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType image/x-icon "access plus 1 year"
+
+    # CSS va JS — 1 kun
+    ExpiresByType text/css "access plus 1 day"
+    ExpiresByType application/javascript "access plus 1 day"
+
+    # Fontlar — 1 yil
+    ExpiresByType font/woff2 "access plus 1 year"
+    ExpiresByType font/woff "access plus 1 year"
+    ExpiresByType application/font-woff2 "access plus 1 year"
+
+    # HTML — cache qilinmasin
+    ExpiresByType text/html "access plus 0 seconds"
+</IfModule>
+
+# HTML fayllar doim so'ralsin (cache emas)
+<FilesMatch "\.(html)$">
+    <IfModule mod_headers.c>
+        Header set Cache-Control "no-cache, no-store, must-revalidate"
+        Header set Pragma "no-cache"
+        Header set Expires "0"
+    </IfModule>
+</FilesMatch>
+
+# ============================================================
+# GZIP COMPRESSION
+# ============================================================
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/json
+    AddOutputFilterByType DEFLATE image/svg+xml
+    AddOutputFilterByType DEFLATE font/woff2
+</IfModule>
+
+# ============================================================
+# XAVFSIZLIK: Directory listing taqiqlash
+# ============================================================
+Options -Indexes
+
+# .env, .git va boshqa maxfiy fayllarni taqiqlash
+<FilesMatch "^\.">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+# ---- Custom 404 ----
+ErrorDocument 404 /404.html

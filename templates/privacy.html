@@ -1,0 +1,179 @@
+{% load static %}
+<!doctype html>
+<html lang="uz">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <!-- Security Meta Tags -->
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+
+  <!-- SEO Meta -->
+  <title>Maxfiylik siyosati — Qaydnoma Blog</title>
+  <meta name="description" content="Qaydnoma Blog maxfiylik siyosati. Foydalanuvchi ma'lumotlari qanday yig'ilishi, ishlatilishi va himoya qilinishi haqida.">
+  <link rel="canonical" href="https://qaydnomauz.uz/privacy/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Maxfiylik siyosati — Qaydnoma Blog">
+  <meta property="og:description" content="Qaydnoma Blog maxfiylik siyosati — foydalanuvchi ma'lumotlari qanday ishlatilishi haqida.">
+  <meta property="og:url" content="https://qaydnomauz.uz/privacy/">
+  <meta property="og:image" content="https://qaydnomauz.uz/static/images/og-default.jpg">
+  <meta property="og:site_name" content="Qaydnoma Blog">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Maxfiylik siyosati — Qaydnoma Blog">
+  <meta name="twitter:description" content="Qaydnoma Blog maxfiylik siyosati — foydalanuvchi ma'lumotlari qanday ishlatilishi haqida.">
+  <meta name="twitter:image" content="https://qaydnomauz.uz/static/images/og-default.jpg">
+
+  <!-- Theme Color -->
+  <meta name="theme-color" content="#ff2d2d">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="{% static 'images/favicon.svg' %}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/32px.png' %}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/16px.png' %}">
+  <link rel="apple-touch-icon" href="{% static 'images/32px.png' %}">
+  <link rel="manifest" href="{% static 'manifest.json' %}">
+
+  <script>
+    (function () {
+      const saved = localStorage.getItem("theme");
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const theme = saved || (prefersDark ? "dark" : "light");
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" integrity="sha384-tViUnnbYAV00FLIhhi3v/dWt3Jxw4gZQcNoSCxCIFNJVCx7/D55/wXsrNIRANwdD" crossorigin="anonymous">
+  <link href="{% static 'css/style.css' %}" rel="stylesheet">
+</head>
+<body>
+<!-- ========== NAVBAR ========== -->
+<nav class="navbar navbar-blur sticky-top">
+  <div class="container">
+
+    <a class="navbar-brand brand-red fw-bold" href="/">Qaydnoma Blog</a>
+
+    <!-- Desktop: theme -->
+    <div class="d-none d-lg-flex align-items-center gap-2 ms-auto">
+      <button id="themeToggle" class="btn btn-light border nav-icon-btn" type="button" aria-label="Mavzuni almashtirish">
+        <i class="bi bi-moon-stars"></i>
+      </button>
+    </div>
+
+    <!-- Hamburger (faqat mobilda) -->
+    <button class="navbar-toggler border-0 d-lg-none" type="button"
+            data-bs-toggle="collapse" data-bs-target="#mainNavbar"
+            aria-controls="mainNavbar" aria-expanded="false" aria-label="Menyu">
+      <i class="bi bi-list fs-2"></i>
+    </button>
+
+    <!-- Mobil collapse -->
+    <div class="collapse navbar-collapse" id="mainNavbar">
+      <div class="navbar-nav-group">
+        <button id="themeToggleMobile" class="btn btn-light border nav-icon-btn w-100" type="button" aria-label="Mavzuni almashtirish">
+          <i class="bi bi-moon-stars"></i>
+        </button>
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+<!-- ========== CONTENT ========== -->
+<div class="container py-4" style="max-width:800px;">
+  <a href="/" class="btn-back mb-3 d-inline-block text-decoration-none">
+    <i class="bi bi-arrow-left"></i> Bosh sahifa
+  </a>
+
+  <div class="card border-0 shadow-sm rounded-4 p-4 privacy-content">
+    <h1 class="fw-bold mb-1" style="font-size:1.6rem;">Maxfiylik siyosati</h1>
+    <p class="text-muted small mb-4">Oxirgi yangilanish: 2026-yil, mart</p>
+
+    <p>
+      Ushbu maxfiylik siyosati <strong>Qaydnoma Blog</strong> (qaydnomauz.uz) saytida
+      foydalanuvchilarning shaxsiy ma'lumotlari qanday yig'ilishi, ishlatilishi va
+      himoya qilinishi haqida ma'lumot beradi. Saytdan foydalanish orqali siz ushbu
+      siyosat shartlariga rozilik bildirasiz.
+    </p>
+
+    <h2>1. Qanday ma'lumotlar yig'iladi</h2>
+    <p>Biz quyidagi ma'lumotlarni yig'ishimiz mumkin:</p>
+    <ul>
+      <li><strong>Ro'yxatdan o'tish ma'lumotlari:</strong> Foydalanuvchi nomi (username) va elektron pochta manzili — hisob yaratish uchun.</li>
+      <li><strong>Izohlar (kommentlar):</strong> Siz blog postlariga qoldiradigan izohlar ommaviy ko'rinadi va saqlandi.</li>
+      <li><strong>Texnik ma'lumotlar:</strong> IP manzil, brauzer turi va sahifaga kirish vaqti — xavfsizlik va statistika maqsadida.</li>
+    </ul>
+
+    <h2>2. Ma'lumotlar qanday ishlatiladi</h2>
+    <p>Yig'ilgan ma'lumotlar quyidagi maqsadlarda ishlatiladi:</p>
+    <ul>
+      <li>Foydalanuvchi hisobini yaratish va boshqarish</li>
+      <li>Izohlar funksiyasini ta'minlash</li>
+      <li>Sayt xavfsizligini ta'minlash</li>
+      <li>Sayt statistikasini tahlil qilish</li>
+      <li>Xizmat sifatini yaxshilash</li>
+    </ul>
+
+    <h2>3. Cookie (kukilar) ishlatilishi</h2>
+    <p>
+      Saytimiz quyidagi hollarda cookie'lardan foydalanadi:
+    </p>
+    <ul>
+      <li><strong>Autentifikatsiya:</strong> Tizimga kirganingizda sessiyangizni saqlab turish uchun.</li>
+      <li><strong>Mavzu (tema):</strong> Siz tanlagan qorong'u yoki yorug' mavzuni eslab qolish uchun (localStorage orqali).</li>
+    </ul>
+    <p>Biz reklama yoki kuzatuv maqsadidagi cookie'lardan foydalanmaymiz.</p>
+
+    <h2>4. Uchinchi tomon xizmatlari</h2>
+    <p>Sayt ishlashi uchun quyidagi uchinchi tomon xizmatlaridan foydalanilishi mumkin:</p>
+    <ul>
+      <li><strong>Bootstrap CDN</strong> — dizayn kutubxonasi</li>
+      <li><strong>Highlight.js CDN</strong> — kod bloklarini ranglash</li>
+      <li><strong>Google Search Console / Yandex Webmaster</strong> — qidiruv tizimlarida indeksatsiya</li>
+    </ul>
+    <p>Bu xizmatlar o'zlarining maxfiylik siyosatlari asosida ishlaydi.</p>
+
+    <h2>5. Ma'lumotlar xavfsizligi</h2>
+    <p>
+      Biz foydalanuvchi ma'lumotlarini himoya qilish uchun texnik va tashkiliy choralar ko'ramiz.
+      Parollar xeshlanadi (hashlangan holda saqlanadi) va sayt HTTPS protokoli orqali ishlaydi.
+      Biroq, internet orqali uzatiladigan hech qanday ma'lumot 100% xavfsiz emas.
+    </p>
+
+    <h2>6. Foydalanuvchi huquqlari</h2>
+    <p>Siz quyidagi huquqlarga egasiz:</p>
+    <ul>
+      <li>O'z hisobingiz ma'lumotlarini ko'rish va tahrirlash</li>
+      <li>Hisobingizni o'chirish so'rovini yuborish</li>
+      <li>Shaxsiy ma'lumotlaringiz haqida so'rov yuborish</li>
+    </ul>
+
+    <h2>7. Siyosatning o'zgarishi</h2>
+    <p>
+      Ushbu maxfiylik siyosati vaqti-vaqti bilan yangilanishi mumkin. O'zgarishlar
+      ushbu sahifada e'lon qilinadi. Muhim o'zgarishlar bo'lganda, sahifaning
+      yuqorisidagi "oxirgi yangilanish" sanasi yangilanadi.
+    </p>
+
+    <h2>8. Bog'lanish</h2>
+    <p>
+      Maxfiylik siyosati yoki shaxsiy ma'lumotlaringiz bilan bog'liq savollaringiz
+      bo'lsa, bizga quyidagi manzil orqali murojaat qiling:
+    </p>
+    <p>
+      <i class="bi bi-envelope me-1"></i>
+      <a href="mailto:info@qaydnomauz.uz">info@qaydnomauz.uz</a>
+    </p>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script src="{% static 'js/footer.js' %}"></script>
+<script src="{% static 'js/theme.js' %}"></script>
+</body>
+</html>

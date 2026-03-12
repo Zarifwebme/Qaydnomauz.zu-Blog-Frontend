@@ -1,0 +1,27 @@
+{
+  "name": "Qaydnoma Blog",
+  "short_name": "Qaydnoma",
+  "description": "Qaydnoma Blog — texnologiya va dasturlash haqida maqolalar",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#f5f6f8",
+  "theme_color": "#ff2d2d",
+  "lang": "uz",
+  "icons": [
+    {
+      "src": "assets/images/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "assets/images/32px.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/images/16px.png",
+      "sizes": "16x16",
+      "type": "image/png"
+    }
+  ]
+}

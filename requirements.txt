@@ -1,0 +1,33 @@
+# ============================================================
+# AHost.uz Shared Hosting — Python requirements
+# ============================================================
+# pip install -r requirements.txt
+# ============================================================
+
+# Django core
+Django>=4.2,<5.0
+djangorestframework>=3.14
+
+# JWT auth
+djangorestframework-simplejwt>=5.3
+
+# CORS (agar frontend alohida subdomen bo'lsa)
+django-cors-headers>=4.3
+
+# Environment variables
+python-dotenv>=1.0
+
+# MySQL (AHost default database)
+mysqlclient>=2.2
+
+# Agar SQLite ishlatmoqchi bo'lsangiz mysqlclient o'rniga:
+# (SQLite Python'da built-in, hech narsa kerak emas)
+
+# Static files
+whitenoise>=6.5
+
+# Rasmlar (agar ImageField ishlatsa)
+Pillow>=10.0
+
+# Production WSGI (Passenger ishlatadi, lekin gunicorn ham bo'lishi mumkin)
+gunicorn>=21.0

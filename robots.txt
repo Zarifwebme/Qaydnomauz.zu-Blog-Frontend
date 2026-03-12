@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+Disallow: /assets/js/
+Disallow: /login.html
+Disallow: /register.html
+Disallow: /profile.html
+Disallow: /forgot-password.html
+Disallow: /reset-password.html
+Disallow: /api/
+Disallow: /admin/
+Disallow: /staticfiles/
+
+Sitemap: https://qaydnomauz.uz/sitemap.xml
