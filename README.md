@@ -1,4 +1,4 @@
-# Qaydnoma.uz — Blog Frontend
+# Qaydnomauz.uz — Blog Frontend
 
 ![Qaydnoma.uz](assets/images/og-default.jpg)
 
