@@ -10,7 +10,7 @@ O'zbek tilidagi blog platformasi. Maqolalar o'qish, yozish va bilim almashish uc
 
 ## Texnologiyalar
 
-- HTML / CSS / JavaScript
+- Bootstrap / CSS / JavaScript
 - Django (Backend)
 - REST API
 
