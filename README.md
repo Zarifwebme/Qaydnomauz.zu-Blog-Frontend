@@ -1,6 +1,6 @@
 # Qaydnomauz.uz — Blog Frontend
 
-![Qaydnoma.uz](static/images/def.jpg)
+![Qaydnoma.uz](static/images/imagefor.jpg)
 
 O'zbek tilidagi blog platformasi. Maqolalar o'qish, yozish va bilim almashish uchun ochiq maydon.
 
